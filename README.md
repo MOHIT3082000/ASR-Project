@@ -1,34 +1,64 @@
-# ASR-Project
-ASR System Automatic Speech Recognition system that transcribes spoken language into text. Records audio, recognizes speech, and generates text output. Built with Python and supports customizable recording duration.
-Project Title: Automatic Speech Recognition (ASR) System
+# Local Automatic Speech Recognition (ASR) System
 
-Project Description:
+This terminal-based ASR system uses the open-source `faster-whisper` model to record audio from your microphone and transcribe it locally without any external APIs.
 
-This project is an implementation of an Automatic Speech Recognition (ASR) system, designed to transcribe spoken language into text. The system utilizes a machine learning approach to recognize patterns in audio inputs and generate corresponding text outputs.
+## Features
 
-Key Features:
+- Records audio from the microphone with configurable duration
+- Saves the audio locally in .wav format
+- Transcribes audio using faster-whisper with high accuracy
+- Automatically uses GPU if available (fallback to CPU)
+- Provides CLI argument support for flexible recording time
+- Works efficiently on machines with 8GB RAM
 
-Audio Recording: The system can record audio inputs from a user's device for a specified duration (e.g., 10 seconds).
-Speech Recognition: The recorded audio is then processed using a speech recognition algorithm to identify spoken words and phrases.
-Text Transcription: The recognized speech is transcribed into text, which can be displayed or stored for further processing.
-Technical Details:
+## Installation
 
-Programming Language: Python
-Dependencies: [list dependencies, e.g., speech_recognition, pyaudio, etc.]
-Audio Input: Supports recording from device's microphone
-Audio Format: [ specify audio format, e.g., WAV, MP3, etc.]
-Usage:
+### Windows
+Run the `setup.bat` file or install dependencies manually:
+```
+pip install -r requirements.txt
+```
 
-Clone the repository to your local machine.
-Install the required dependencies using pip install -r requirements.txt.
-Run the project using python local_asr.py --duration 10 (replace 10 with desired recording duration).
-Example Use Cases:
+### macOS/Linux
+Run the `setup.sh` file or install dependencies manually:
+```
+pip install -r requirements.txt
+```
 
-Voice-controlled applications
-Speech-to-text systems
-Audio transcription services
-Future Development:
+## Usage
 
-Improving speech recognition accuracy
-Supporting additional audio formats
-Integrating with other natural language processing (NLP) tools
+### Basic Usage
+Record for 60 seconds (default):
+```
+python local_asr.py
+```
+
+### Record for a specific duration
+```
+python local_asr.py --duration 30
+```
+
+### Use a specific model size
+Options: tiny, base, small, medium, large
+```
+python local_asr.py --model small
+```
+
+### Check for and download the latest model
+```
+python local_asr.py --download-latest
+```
+
+## Technical Details
+
+- Using `sounddevice` and `scipy` for audio recording and saving
+- Transcription powered by the `faster-whisper` library
+- Automatic CPU/GPU detection using PyTorch
+- Audio is saved in WAV format with a timestamp in the filename
+- All processing is done locally with no external API calls
+
+## System Requirements
+
+- Python 3.8 or higher
+- 8GB RAM (minimum)
+- GPU support is optional but recommended for faster processing
